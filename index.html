@@ -22,11 +22,11 @@
       return y(d.close);
     });
 
-  
+
   d3.json("data.json", function (error, data) {
     if (error) throw error;
-    
-    let chartData = data.map(function(item) {
+
+    var chartData = data.map(function(item) {
       item.date = parseTime(item.date);
       item.close = +item.close;
       return item;
@@ -35,11 +35,11 @@
     x.domain(d3.extent(chartData, function (data) {
       return data.date;
     }));
-    
+
     y.domain([0, d3.max(chartData, function (data) {
       return data.close;
     })]);
-    
+
     area.y0(y(0));
 
     g.append("path")
